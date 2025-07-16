@@ -2,13 +2,19 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QPushButton>
+#include "controller/CoreController.h"
 
-class MainWindow : public QMainWindow
-{
+class MainWindow : public QMainWindow {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    explicit MainWindow(QWidget* parent = nullptr);
     ~MainWindow();
+
+private:
+    CoreController* controller;
+    QPushButton* openFileButton;
 };
+
 #endif // MAINWINDOW_H
