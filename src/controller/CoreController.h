@@ -18,5 +18,4 @@ public slots:
 private:
     Command* createCommand(const QString& cmd);
     void executeCommand(Command* command);
-
 };
