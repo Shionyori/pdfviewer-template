@@ -1,14 +1,18 @@
-#ifndef OPENFILEDELEGATE_H
-#define OPENFILEDELEGATE_H
+#pragma once
 
-#include <QObject>
-#include <QString>
+#include "Delegate.h"
 
-class OpenFileDelegate : public QObject {
+#include "model/DocumentModel.h"
+
+class OpenFileDelegate : public Delegate {
     Q_OBJECT
 
 public:
-    void openFile(const QString& fileName);
-};
+    explicit OpenFileDelegate(DocumentModel* model,
+                              QObject* parent = nullptr);
 
-#endif // OPENFILEDELEGATE_H
+    void Implement(const QString& fileName) override;
+
+private:
+    DocumentModel* documentModel;
+};

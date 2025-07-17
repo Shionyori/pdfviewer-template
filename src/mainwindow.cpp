@@ -1,17 +1,15 @@
 #include "MainWindow.h"
-#include <QPushButton>
 #include <QVBoxLayout>
 #include <QLabel>
-#include "controller/CoreController.h"
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), controller(new CoreController(this)) {
-    // Setup UI components
-    openFileButton = new QPushButton("Open PDF File", this);
+
+    openFileButton = new QPushButton("打开文件", this);
     connect(openFileButton, &QPushButton::clicked, this, [this]() {
         controller->post("OpenFile");
     });
 
-    QLabel *label = new QLabel("Click the button to open a PDF file.", this);
+    QLabel *label = new QLabel("架构测试", this);
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->addWidget(label);

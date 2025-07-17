@@ -1,18 +1,11 @@
-#ifndef DOCUMENTMODEL_H
-#define DOCUMENTMODEL_H
+#pragma once
 
 #include <QObject>
+#include <QString>
 
 class DocumentModel : public QObject {
     Q_OBJECT
-
 public:
-    static DocumentModel* instance();
-    void openFile(const QString &fileName);
-
-private:
-    DocumentModel() {}
-    static DocumentModel* m_instance;
+    explicit DocumentModel(QObject* parent = nullptr);
+    void openFile(const QString& path);
 };
-
-#endif // DOCUMENTMODEL_H

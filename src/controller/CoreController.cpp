@@ -1,20 +1,35 @@
 #include "CoreController.h"
-#include "controller/command/Command.h"
 
-CoreController::CoreController(QObject* parent) : QObject(parent), delegate(new OpenFileDelegate()) {}
+#include "command/OpenFileCommand.h"
+#include "delegate/OpenFileDelegate.h"
 
-CoreController::~CoreController() {
-    delete delegate;
-}
+#include "model/DocumentModel.h"
+
+CoreController::CoreController(QObject* parent) : QObject(parent) {}
+
+CoreController::~CoreController() {}
 
 void CoreController::post(const QString& cmd) {
-    executeCommand(cmd);
+    Command* command = createCommand(cmd);
+    if (command) {
+        executeCommand(command);
+        delete command;
+    }
 }
 
-void CoreController::executeCommand(const QString& cmd) {
-    Command* command = Command::createCommand(cmd, delegate);
+Command* CoreController::createCommand(const QString& cmd) {
+    if (cmd == "OpenFile") {
+        DocumentModel* model = new DocumentModel(this); // 构造模型
+        Delegate* delegate = new OpenFileDelegate(model); // 构造代理
+        return new OpenFileCommand(delegate); // 创建命令
+    }
+    // 可添加if分支来创建新的命令
+    else
+        return nullptr;
+}
+
+void CoreController::executeCommand(Command* command) {
     if (command) {
         command->execute();
-        delete command;
     }
 }

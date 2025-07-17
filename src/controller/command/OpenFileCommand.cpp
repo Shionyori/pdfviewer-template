@@ -1,18 +1,15 @@
 #include "OpenFileCommand.h"
+
 #include <QDebug>
 
-OpenFileCommand::OpenFileCommand(OpenFileDelegate* delegate) : Command(delegate) {
-    // Constructor implementation
-}
+OpenFileCommand::OpenFileCommand(Delegate* delegate) : Command(delegate) {}
 
-OpenFileCommand::~OpenFileCommand() {
-    // Destructor implementation
-}
+OpenFileCommand::~OpenFileCommand() {}
 
 void OpenFileCommand::execute() {
     if (delegate) {
-        delegate->openFile("example.pdf");
+        delegate->Implement("Example.pdf");
     } else {
-        qDebug() << "Delegate is null";
+        qDebug() << "Delegate not found";
     }
 }

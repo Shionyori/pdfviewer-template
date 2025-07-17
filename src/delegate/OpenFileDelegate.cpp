@@ -1,8 +1,15 @@
 #include "OpenFileDelegate.h"
+
 #include <QDebug>
 
-void OpenFileDelegate::openFile(const QString& fileName) {
-    qDebug() << "Opening file:" << fileName;
-    // Add the logic to open the file here
-    qDebug() << "File opened successfully.";
+OpenFileDelegate::OpenFileDelegate(DocumentModel* model,
+                                   QObject* parent)
+    : Delegate(parent)
+    , documentModel(model) {}
+
+void OpenFileDelegate::Implement(const QString& fileName) {
+    if(documentModel)
+    {
+        documentModel->openFile(fileName);
+    }
 }

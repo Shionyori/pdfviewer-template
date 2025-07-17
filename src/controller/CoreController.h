@@ -1,9 +1,9 @@
-#ifndef CORECONTROLLER_H
-#define CORECONTROLLER_H
+#pragma once
 
 #include <QObject>
 #include <QString>
-#include "delegate/OpenFileDelegate.h"
+
+#include "command/Command.h"
 
 class CoreController : public QObject {
     Q_OBJECT
@@ -16,8 +16,7 @@ public slots:
     void post(const QString& cmd);
 
 private:
-    void executeCommand(const QString& cmd);
-    OpenFileDelegate* delegate;
-};
+    Command* createCommand(const QString& cmd);
+    void executeCommand(Command* command);
 
-#endif // CORECONTROLLER_H
+};

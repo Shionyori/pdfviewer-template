@@ -1,5 +1,4 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#pragma once
 
 #include <QMainWindow>
 #include <QPushButton>
@@ -16,5 +15,3 @@ private:
     CoreController* controller;
     QPushButton* openFileButton;
 };
-
-#endif // MAINWINDOW_H
