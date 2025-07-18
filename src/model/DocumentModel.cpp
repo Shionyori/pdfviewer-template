@@ -1,5 +1,6 @@
 #include "DocumentModel.h"
 #include <QDebug>
+#include <poppler/qt6/poppler-qt6.h>
 
 DocumentModel::DocumentModel(QObject* parent) : QObject(parent) {}
 

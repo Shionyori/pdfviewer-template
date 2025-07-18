@@ -14,13 +14,20 @@ file(GLOB_RECURSE SOURCES
     "src/*.cpp"
     "src/*.h"
 )
-
 qt_add_executable(${PROJECT_NAME}
     ${SOURCES}
 )
 
+add_library(poppler-qt6 STATIC IMPORTED)
+set_target_properties(poppler-qt6 PROPERTIES
+    IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/3rdpart/poppler-win64/lib/poppler-qt6.dll"
+    IMPORTED_IMPLIB "${CMAKE_SOURCE_DIR}/3rdpart/poppler-win64/lib/poppler-qt6.lib"
+    INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/3rdpart/poppler-win64/include"
+)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Widgets
+    poppler-qt6
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
