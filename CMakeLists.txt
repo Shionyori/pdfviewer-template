@@ -20,7 +20,7 @@ qt_add_executable(${PROJECT_NAME}
 
 add_library(poppler-qt6 STATIC IMPORTED)
 set_target_properties(poppler-qt6 PROPERTIES
-    IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/3rdpart/poppler-win64/lib/poppler-qt6.dll"
+    IMPORTED_LOCATION "${CMAKE_SOURCE_DIR}/3rdpart/poppler-win64/lib/poppler-qt6.lib"
     IMPORTED_IMPLIB "${CMAKE_SOURCE_DIR}/3rdpart/poppler-win64/lib/poppler-qt6.lib"
     INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/3rdpart/poppler-win64/include"
 )
