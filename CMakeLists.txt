@@ -25,11 +25,16 @@ set_target_properties(poppler-qt6 PROPERTIES
     INTERFACE_INCLUDE_DIRECTORIES "${CMAKE_SOURCE_DIR}/3rdpart/poppler-win64/include"
 )
 
+set(ELAWIDGETTOOLS_BUILD_STATIC_LIB "STATIC" CACHE STRING "Build ElaWidgetTools as a static library")
+add_subdirectory(3rdpart/ElaWidgetTools)
+
 target_link_libraries(${PROJECT_NAME} PRIVATE
     Qt6::Widgets
     poppler-qt6
+    ElaWidgetTools
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/src
+    src
+    3rdpart/ElaWidgetTools/ElaWidgetTools/include
 )
